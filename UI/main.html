@@ -7,18 +7,20 @@
     <title>Главная страница</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <header class="header">
+
+  <header>
     <a href="main.html"><img src="pics/logo.svg" class="logo" /></a>
     <button class="orange-button" name="go-out-button">
       <a href="">Выйти</a>
     </button>
     <label for="go-out-button" id="username-header">tanechka</label>
   </header>
-  <body scroll="yes">
+
+  <body class="scroll-style">
     <section>
       <div class="message-input">
         <form>
-          <div class="tweet-inf username"><span>tanechka:</span></div>
+          <div class="twit-inf username"><span>tanechka:</span></div>
           <div style="position: relative">
             <hr />
             <textarea colums="60" rows="5">Введите текст </textarea>
@@ -26,201 +28,259 @@
           </div>
         </form>
       </div>
-      <button id="filter">
-        <img src="pics/filter.svg" class="margin-auto" />
-      </button>
+
+      <div class="filter-div">
+        <form>
+          <div class="filter-box">
+            <div class="margin-top-3">
+              <label for="authors" class="margin-right-label">Автор</label>
+              <select name="authors" aria-placeholder="Автор">
+                <option value="1">User1</option>
+                <option value="2">User2</option>
+                <option value="3">User3</option>
+                <option value="4">User4</option>
+                <option value="5">User5</option>
+                <option value="6">User6</option>
+              </select>
+            </div>
+            <div>
+              <label class="margin-right-label">По дате добавления</label>
+              <div style="display: inline-block">
+                <label for="since">С</label>
+                <input name="since" type="date" />
+              </div>
+              <div style="display: inline-block" class="margin-left-3">
+                <label for="till">До </label><input name="till" type="date" />
+              </div>
+            </div>
+            <div>
+              <label for="tags" class="margin-right-label">#Теги</label>
+              <select name="tags">
+                <option value="1">#тэг1</option>
+                <option value="2">#тэг2</option>
+                <option value="3">#тэг3</option>
+                <option value="4">#тэг4</option>
+                <option value="5">#тэг5</option>
+                <option value="6">#тэг6</option>
+              </select>
+            </div>
+            <div class="margin-bottom-3">
+              <label for="text" class="margin-right-label">Текст</label>
+              <input placeholder="Введите текст" />
+              <button class="orange-button">Применить</button>
+            </div>
+          </div>
+        </form>
+
+        <button id="filter">
+          <img src="pics/filter.svg" class="margin-auto icon" />
+        </button>
+      </div>
     </section>
+
     <hr id="line" />
 
     <section>
-      <section class="tweet">
-        <div class="tweet-inf">
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">tanechka:</span>
-
           <span>02:04 18.02.2022</span>
-          <button class="tweet-inf-button">
-            <img src="pics/edit.svg" />
+          <button class="twit-inf-button">
+            <img src="pics/edit.svg" class="icon" />
           </button>
-          <button class="tweet-inf-button margin-right-5">
-            <img src="pics/trash-busket.svg" />
+          <button class="twit-inf-button margin-right-5">
+            <img src="pics/trash-busket.svg" class="icon" />
           </button>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Это моя первая запись <span class="hashtag">#helloworld</span>
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 17.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Являясь всего лишь частью общей картины, сделанные на базе
           интернет-аналитики выводы являются только методом политического
           участия и указаны как претенденты на роль ключевых факторов. Мы
           вынуждены отталкиваться от того, что понимание сути ресурсосберегающих
           технологий требует
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 16.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Являясь всего лишь частью общей картины, сделанные на базе
           интернет-аналитики выводы являются только методом политического
           участия и указаны как претенденты на роль ключевых факторов. Мы
           вынуждены отталкиваться от того, что понимание сути ресурсосберегающих
           технологий требует
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 15.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           С учётом сложившейся международной обстановки, убеждённость некоторых
           оппонентов обеспечивает широкому кругу (специалистов) участие в
           формировании приоритизации разума над эмоциями.
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 14.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Равным образом, высокое качество позиционных исследований в
           значительной степени обусловливает важность поэтапного и
           последовательного развития общества.
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 13.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Являясь всего лишь частью общей картины, сделанные на базе
           интернет-аналитики выводы являются только методом политического
           участия и указаны как претенденты на роль ключевых факторов. Мы
           вынуждены отталкиваться от того, что понимание сути ресурсосберегающих
           технологий требует
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 12.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Являясь всего лишь частью общей картины, сделанные на базе
           интернет-аналитики выводы являются только методом политического
           участия и указаны как претенденты на роль ключевых факторов. Мы
           вынуждены отталкиваться от того, что понимание сути ресурсосберегающих
           технологий требует
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 11.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           С учётом сложившейся международной обстановки, убеждённость некоторых
           оппонентов обеспечивает широкому кругу (специалистов) участие в
           формировании приоритизации разума над эмоциями.
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 10.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Равным образом, высокое качество позиционных исследований в
           значительной степени обусловливает важность поэтапного и
           последовательного развития общества.
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <section class="tweet">
-        <div class="tweet-inf">
+
+      <section class="twit">
+        <div class="twit-inf">
           <span class="username">username:</span>
           <span class="margin-right-mixed">02:04 9.02.2022</span>
         </div>
-        <div class="tweet-text">
+        <div class="twit-text">
           Являясь всего лишь частью общей картины, сделанные на базе
           интернет-аналитики <span class="hashtag">#выводы </span>являются
           только методом политического участия и указаны как претенденты на роль
           ключевых факторов. Мы вынуждены отталкиваться от того, что понимание
           сути ресурсосберегающих технологий требует
         </div>
-        <div class="tweet-answers">
+        <div class="twit-answers">
           <a>
-            <img src="pics/retweet.svg" />
+            <img src="pics/retwit.svg" class="icon" />
           </a>
           <p>222</p>
         </div>
       </section>
-      <button id="refresh-button"><img src="pics/refresh.svg" /></button>
+
+      <button id="refresh-button">
+        <img src="pics/refresh.svg" class="icon" />
+      </button>
     </section>
   </body>
+
   <footer>
     <img src="pics/logo.svg" class="logo" />
     <div class="footer-inf">

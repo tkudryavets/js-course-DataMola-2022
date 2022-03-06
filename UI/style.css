@@ -1,0 +1,499 @@
+:root {
+  --orange-color: #eb5838;
+  --emerald-color: #1a544d;
+  --back-color: #fbfffe;
+  --margin-5: 5%;
+  --border-radius: 4.29rem;
+}
+
+html {
+  font-size: 14px;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  line-height: 1.5;
+}
+body {
+  margin: 10rem 0 0 0;
+  background-color: var(--back-color);
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  height: 6.43rem;
+  background-color: var(--emerald-color);
+  z-index: 100;
+}
+
+.orange-button {
+  /* height: 60px; */
+  background-color: var(--orange-color);
+  border: none;
+  font-size: 1.7rem;
+  padding: 1rem 2rem 1rem 2rem;
+  margin-top: 1.25rem;
+  float: right;
+  border-radius: 2.14rem;
+}
+header .orange-button {
+  margin-right: 3.57rem;
+  margin-left: 2.7rem;
+}
+.orange-button a {
+  text-decoration: none;
+  color: white;
+}
+.logo {
+  float: left;
+  height: 4.29rem;
+  margin: 1rem 0rem 1rem 7.14rem;
+}
+#username-header {
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  float: right;
+  color: white;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 1.29rem;
+  margin: 0 5%;
+  flex: auto;
+}
+
+.message-input {
+  border-radius: var(--border-radius);
+  border: var(--emerald-color) solid 2px;
+  margin: 50px 14% 0px 14%;
+  box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+.message-input textarea {
+  margin: 2% 0% 2% 5%;
+  width: 70%;
+  border: none;
+  font-size: 1rem;
+  resize: none;
+}
+.message-input .orange-button {
+  width: 6.07rem;
+  height: 2.86rem;
+  font-size: 1rem;
+  color: white;
+  align-self: end;
+  margin-right: 5%;
+  margin-top: 6%;
+  padding: 0;
+}
+
+.message-input hr {
+  z-index: 5;
+  position: absolute;
+  background-color: black;
+  height: 1px;
+  top: 2.14rem;
+  left: var(--margin-5);
+  width: 70%;
+  border: none;
+}
+
+#line {
+  border: none;
+  background-color: var(--emerald-color);
+  height: 2px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2.5rem;
+}
+
+#filter {
+  background-color: inherit;
+  width: 2.57rem;
+  height: 2.57rem;
+  border-radius: 0.57rem;
+  padding: 9px 6px 5px 6px;
+  margin-top: 2.5%;
+  margin-bottom: 1%;
+  box-sizing: border-box;
+  border: var(--emerald-color) 2px solid;
+}
+
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  border: var(--emerald-color) solid 1px;
+  border-radius: 0.4rem;
+  padding-left: 2%;
+  width: 100%;
+  background-color: white;
+}
+.filter-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 3% 14%;
+}
+select {
+  border: var(--emerald-color) solid 1px;
+  border-radius: 0.3rem;
+  width: 10rem;
+}
+option {
+  height: 1rem;
+}
+
+select,
+input {
+  height: 1.7rem;
+  font-size: 1rem;
+  border: var(--emerald-color) solid 1px;
+  border-radius: 0.3rem;
+}
+
+.filter-div .orange-button {
+  width: 8.07rem;
+  height: 2.86rem;
+  font-size: 1rem;
+  color: white;
+  align-self: end;
+  margin-right: 5%;
+  margin-top: 6%;
+  padding: 0;
+}
+
+.twit {
+  border-radius: var(--border-radius);
+  border: var(--emerald-color) solid 1px;
+  margin: 1.5rem 14% 1.5rem 14%;
+  background-color: white;
+}
+
+.twit-main {
+  border-radius: var(--border-radius);
+  border: var(--emerald-color) solid 1px;
+  margin: 1.5rem 14% 1.5rem 14%;
+  background-color: white;
+}
+
+.twit-text {
+  margin: 2% var(--margin-5);
+}
+
+.twit-inf {
+  margin-top: 3%;
+  display: flex;
+  align-items: baseline;
+}
+
+.twit-inf-button {
+  height: 1.5rem;
+  background-color: inherit;
+  margin: 0 0.5%;
+  border: none;
+}
+
+.twit-answers {
+  display: flex;
+  justify-content: flex-end;
+}
+.twit-answers p {
+  margin-top: 2px;
+  margin-right: var(--margin-5);
+  margin-left: 10px;
+}
+.hashtag {
+  font-weight: 500;
+  color: var(--orange-color);
+}
+
+#refresh-button {
+  background-color: inherit;
+  border: none;
+  margin-left: 50%;
+  transform: translate(-50%, 0%);
+  /* margin-top: 1.5rem; */
+  margin-bottom: 1.5rem;
+}
+
+#refresh-button .icon {
+  height: 3rem;
+}
+
+footer {
+  height: 8.5rem;
+  background-color: #3f3f3f;
+}
+.footer-inf {
+  color: white;
+  line-height: 1;
+  align-content: center;
+  height: 8rem;
+  margin-left: 50%;
+  padding-top: 1rem;
+  transform: translate(-50%, 0%);
+}
+.footer-inf p {
+  text-align: center;
+}
+footer .logo {
+  margin-top: 1.5rem;
+}
+
+.comment {
+  margin: 1.5rem 14% 1.5rem 14%;
+  border-bottom: var(--emerald-color) solid 1px;
+}
+
+.comment-inf {
+  margin-top: 3%;
+  display: flex;
+}
+
+.comment-text {
+  margin: 2% var(--margin-5);
+}
+
+.comment-input {
+  display: flex;
+  align-items: center;
+}
+
+.comment-input textarea {
+  margin: 2% 0% 2% 14%;
+  padding: 1rem 2rem;
+  width: 65%;
+  border: var(--emerald-color) solid 1px;
+  border-radius: 2rem;
+  font-size: 1rem;
+  resize: none;
+}
+
+.send {
+  background-color: inherit;
+  border: none;
+}
+
+.scroll-style::-webkit-scrollbar {
+  width: 6px;
+  background-color: inherit;
+}
+
+.scroll-style::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--border-radius) / 2);
+  background-color: #b3b3b3;
+}
+
+@media screen and (min-width: 3000px) {
+  html {
+    font-size: 40px;
+  }
+  .twit-inf-button {
+    height: 1rem;
+  }
+  .icon {
+    height: 1rem;
+  }
+  #refresh-button .icon {
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  html {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) and (min-width: 451px) {
+  html {
+    font-size: 10px;
+  }
+
+  header {
+    height: 5rem;
+  }
+
+  header .orange-button {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .orange-button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .logo {
+    height: 3rem;
+    margin: 1rem 0rem 1rem 3rem;
+  }
+
+  #username-header {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .twit {
+    border: none;
+    border-bottom: var(--emerald-color) 1px solid;
+    border-radius: 0rem;
+  }
+
+  #filter .icon {
+    height: 1rem;
+  }
+
+  #filter {
+    padding: 0;
+  }
+
+  .filter-div {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .comment-input textarea {
+    width: 60%;
+  }
+
+  .comment-input .icon {
+    height: 2.5rem;
+  }
+
+  footer .logo {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    height: 2rem;
+  }
+  .scroll-style::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 6px;
+  }
+  header {
+    height: 5rem;
+  }
+
+  header .orange-button {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  .orange-button a {
+    text-decoration: none;
+    color: white;
+  }
+  .logo {
+    height: 3rem;
+    margin: 1rem 0rem 1rem 0.5rem;
+  }
+
+  #username-header {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .message-input {
+    border-radius: 1rem;
+  }
+
+  .message-input .orange-button {
+    width: 4rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    margin-top: 10%;
+  }
+
+  .filter-div .orange-button {
+    width: 6rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  .filter-div {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .twit {
+    border: none;
+    border-bottom: var(--emerald-color) 1px solid;
+    border-radius: 0rem;
+  }
+
+  .twit-main {
+    border-radius: 1.5rem;
+  }
+
+  .twit .icon {
+    height: 1.5rem;
+  }
+
+  #filter .icon {
+    height: 1rem;
+  }
+
+  #filter {
+    padding: 0;
+  }
+
+  .filter-box {
+    width: 100%;
+  }
+  .comment-input .icon {
+    height: 2.5rem;
+  }
+
+  .comment-input textarea {
+    width: 55%;
+  }
+
+  footer .logo {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    height: 2rem;
+  }
+  .scroll-style::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.margin-right-5 {
+  margin-right: var(--margin-5);
+}
+.margin-right-mixed {
+  margin-right: calc(64px + 6.5%);
+}
+.margin-right-label {
+  margin-right: 2.7rem;
+  font-weight: 600;
+}
+
+.margin-top-3 {
+  margin-top: 3%;
+}
+
+.margin-bottom-3 {
+  margin-bottom: 3%;
+}
+
+.margin-left-3 {
+  margin-left: 3%;
+}

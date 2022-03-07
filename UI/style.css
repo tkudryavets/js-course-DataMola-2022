@@ -27,33 +27,31 @@ header {
 }
 
 .orange-button {
-  /* height: 60px; */
   background-color: var(--orange-color);
   border: none;
-  font-size: 1.7rem;
-  padding: 1rem 2rem 1rem 2rem;
-  margin-top: 1.25rem;
-  float: right;
+  font-size: 1rem;
+  padding: 1rem 2rem;
   border-radius: 2.14rem;
+  color: white;
+  font-size: 1.2rem;
 }
 header .orange-button {
-  margin-right: 3.57rem;
-  margin-left: 2.7rem;
+  margin: 1.57rem 3.57rem 1.57rem 2.7rem;
+  font-size: 1.3rem;
+  float: right;
 }
-.orange-button a {
-  text-decoration: none;
-  color: white;
-}
+
 .logo {
   float: left;
   height: 4.29rem;
   margin: 1rem 0rem 1rem 7.14rem;
 }
-#username-header {
-  font-size: 1.7rem;
-  margin-top: 2rem;
+.username-header {
+  font-size: 1.3rem;
+  margin-top: 2.57rem;
   float: right;
   color: white;
+  line-height: 1;
 }
 
 .username {
@@ -86,6 +84,7 @@ header .orange-button {
   margin-right: 5%;
   margin-top: 6%;
   padding: 0;
+  float: right;
 }
 
 .message-input hr {
@@ -127,7 +126,7 @@ header .orange-button {
   border: var(--emerald-color) solid 1px;
   border-radius: 0.4rem;
   padding-left: 2%;
-  width: 100%;
+  width: 95%;
   background-color: white;
 }
 .filter-div {
@@ -160,6 +159,7 @@ input {
   align-self: end;
   margin-right: 5%;
   margin-top: 6%;
+  float: right;
   padding: 0;
 }
 
@@ -241,6 +241,11 @@ footer .logo {
   margin-top: 1.5rem;
 }
 
+.comments {
+  height: 25vh;
+  overflow-y: scroll;
+}
+
 .comment {
   margin: 1.5rem 14% 1.5rem 14%;
   border-bottom: var(--emerald-color) solid 1px;
@@ -285,6 +290,56 @@ footer .logo {
   background-color: #b3b3b3;
 }
 
+footer {
+  bottom: 0px;
+}
+
+.authorization-block {
+  margin: 5% 20% 10% 20%;
+  padding-top: 2rem;
+  height: 30rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0rem;
+  /* font-weight: 500; */
+}
+.input-user-info {
+  display: block;
+  width: 20rem;
+  margin-left: 50%;
+  transform: translate(-50%, 0%);
+  margin-bottom: 2.5rem;
+}
+
+.white-button {
+  background-color: white;
+  border: var(--orange-color) solid 1px;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: 2.14rem;
+  color: var(--orange-color);
+}
+.buttons-authorization {
+  display: flex;
+  justify-content: center;
+}
+
+.authorization-block .white-button {
+  margin-left: 1rem;
+}
+
+.authorization-block .logo {
+  margin: 3rem 0rem;
+  margin-left: 50%;
+  transform: translate(-50%, 0%);
+}
+
 @media screen and (min-width: 3000px) {
   html {
     font-size: 40px;
@@ -298,11 +353,17 @@ footer .logo {
   #refresh-button .icon {
     height: 3rem;
   }
+  .comments {
+    height: 60vh;
+  }
 }
 
 @media screen and (min-width: 2500px) {
   html {
     font-size: 30px;
+  }
+  .comments {
+    height: 40vh;
   }
 }
 
@@ -310,9 +371,12 @@ footer .logo {
   html {
     font-size: 20px;
   }
+  .comments {
+    height: 20vh;
+  }
 }
 
-@media screen and (max-width: 800px) and (min-width: 451px) {
+@media screen and (max-width: 850px) and (min-width: 451px) {
   html {
     font-size: 10px;
   }
@@ -322,15 +386,9 @@ footer .logo {
   }
 
   header .orange-button {
-    margin-right: 2rem;
-    margin-left: 2rem;
-    font-size: 1.2rem;
+    margin: 1rem 2rem;
+    font-size: 1rem;
     padding: 1rem;
-  }
-
-  .orange-button a {
-    text-decoration: none;
-    color: white;
   }
 
   .logo {
@@ -338,9 +396,9 @@ footer .logo {
     margin: 1rem 0rem 1rem 3rem;
   }
 
-  #username-header {
+  .username-header {
     font-size: 1.2rem;
-    margin-top: 2rem;
+    margin-top: 1.9rem;
   }
 
   .twit {
@@ -361,7 +419,9 @@ footer .logo {
     flex-direction: column;
     align-items: flex-end;
   }
-
+  .comments {
+    height: 66vh;
+  }
   .comment-input textarea {
     width: 60%;
   }
@@ -378,34 +438,37 @@ footer .logo {
   .scroll-style::-webkit-scrollbar {
     width: 5px;
   }
+  .footer-fixed {
+    position: fixed;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 450px) {
   html {
-    font-size: 6px;
+    font-size: 10px;
   }
   header {
     height: 5rem;
   }
 
+  .username-header {
+    visibility: hidden;
+  }
   header .orange-button {
-    margin-right: 1rem;
-    margin-left: 1rem;
+    margin: 1rem 2rem;
     font-size: 1rem;
     padding: 1rem;
   }
-  .orange-button a {
-    text-decoration: none;
-    color: white;
-  }
+
   .logo {
     height: 3rem;
     margin: 1rem 0rem 1rem 0.5rem;
   }
 
-  #username-header {
+  .username-header {
     font-size: 1.2rem;
-    margin-top: 2rem;
+    margin-top: 1.9rem;
   }
 
   .message-input {
@@ -453,6 +516,10 @@ footer .logo {
   .filter-box {
     width: 100%;
   }
+  .comments {
+    height: 60vh;
+  }
+
   .comment-input .icon {
     height: 2.5rem;
   }
@@ -468,6 +535,13 @@ footer .logo {
   }
   .scroll-style::-webkit-scrollbar {
     width: 3px;
+  }
+  .input-user-info {
+    width: 15rem;
+  }
+  .footer-fixed {
+    position: fixed;
+    width: 100%;
   }
 }
 

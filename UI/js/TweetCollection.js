@@ -1,3 +1,6 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable quotes */
 /* eslint-disable no-plusplus */
@@ -21,6 +24,16 @@ class TweetCollection {
 
   set user(user) {
     this._user = user;
+  }
+
+  get array(){
+    return this._tweetsArray;
+  }
+
+  set array(array){
+    if(Array.isArray(array)){
+      this._tweetsArray = array; 
+    }
   }
 
   addAll(twsArray) {
@@ -55,6 +68,7 @@ class TweetCollection {
       switch (filter) {
         case "author":
           paginationTweets = paginationTweets.filter(
+            // eslint-disable-next-line comma-dangle
             (tweet) => tweet.author === filterConfig.author
           );
           break;
@@ -104,7 +118,7 @@ class TweetCollection {
 
   get(id) {
     return (
-      this._tweetsArray.find((item) => item.id === id) ||
+      this._tweetsArray.find((item) => item.id === id) ??
       console.log(`Твит с ID=${id} не найден`)
     );
   }
@@ -168,7 +182,6 @@ class TweetCollection {
     const idCom = Date.now() * 1000 + Math.floor(Math.random() * 1000);
     const comment = new Comment(idCom.toString(), text, new Date(), this._user);
     if (Comment.validate(comment) && this.get(id)) {
-      // this._tweetsArray.find((item) => item.id == id)?.comments.push(comment);
       this.get(id).comments.push(comment);
       return true;
     }
@@ -180,9 +193,11 @@ const tweetsCollection = new TweetCollection(tweets);
 console.log(tweetsCollection.get("11"));
 tweetsCollection.user = "Кудрявец Таня";
 console.log(tweetsCollection.addComment("15", "hello"));
-console.log(tweetsCollection.add("new tweet is here!"));
 console.log(tweetsCollection.remove("44"));
 console.log(tweetsCollection.remove("12"));
 console.log(tweetsCollection.edit("7", "tweet is edited"));
 console.log(tweetsCollection.remove("7"));
 console.log(tweetsCollection.getPage(5, 15));
+tweetsCollection.clear();
+console.log(tweetsCollection.add("new tweet is here!"));
+console.log(tweetsCollection.array);

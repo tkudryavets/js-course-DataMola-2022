@@ -8,12 +8,16 @@ class List {
     this._length = 1;
   }
 
-  addNode(value, i) {
+  get length() {
+    return this._length;
+  }
+
+  addNode(value, i = "") {
     if (this._length <= i) {
       return false;
     }
 
-    if (!i) {
+    if (i === "") {
       i = this._length - 1;
     }
 
@@ -69,11 +73,11 @@ class List {
   }
 }
 
-const list = new List(0);
-list.addNode(1);
-list.addNode(2);
-list.addNode(4);
-list.addNode(5);
-list.addNode(3, 2);
+const list = new List("a");
+list.addNode("c");
 list.removeNode(4);
+list.addNode("b", 0);
+list.addNode("d", 2);
+list.addNode("e");
+list.addNode("f", 4);
 list.print();

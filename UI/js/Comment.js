@@ -11,7 +11,7 @@ class Comment {
     this._id = id;
     this.text = text;
     this._author = author;
-    this.createdAt = new Date(createAt);
+    this._createdAt = new Date(createAt);
   }
 
   get id() {
@@ -19,11 +19,8 @@ class Comment {
   }
 
   set id(id) {
-    if (typeof id === "string") {
-      this._id = id;
-    } else {
-      console.log("Cannot set id", id);
-    }
+    console.log("Cannot set id", id);
+    return;
   }
 
   get createdAt() {
@@ -31,11 +28,8 @@ class Comment {
   }
 
   set createdAt(date) {
-    if (date.getTime()) {
-      this._createdAt = date;
-    } else {
-      console.log("Cannot set date", id);
-    }
+    console.log("Cannot set date", date);
+    return;
   }
 
   get author() {
@@ -43,11 +37,8 @@ class Comment {
   }
 
   set author(author) {
-    if (typeof author !== "string" || author.length === 0) {
-      this._author = author;
-    } else {
-      console.log("Cannot set author", author);
-    }
+    console.log("Cannot set author", author);
+    return;
   }
 
   static validate(com) {

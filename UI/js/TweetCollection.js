@@ -113,10 +113,7 @@ class TweetCollection {
   }
 
   get(id) {
-    return (
-      this._tweetsArray.find((item) => item.id === id) ??
-      console.log(`Твит с ID=${id} не найден`)
-    );
+    return this.tweetsArray.find((item) => item.id === id);
   }
 
   add(text) {
@@ -180,7 +177,7 @@ class TweetCollection {
 const tweetsCollection = new TweetCollection(tweets);
 tweetsCollection.user = "Кудрявец Таня";
 // console.log(tweetsCollection.get("11"));
-// console.log(tweetsCollection.addComment("15", "hello"));
+console.log(tweetsCollection.addComment("22", "hello"));
 // console.log(tweetsCollection.remove("44"));
 // console.log(tweetsCollection.remove("12"));
 // console.log(tweetsCollection.edit("7", "tweet is edited"));

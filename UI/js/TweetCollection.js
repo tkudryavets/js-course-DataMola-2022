@@ -174,10 +174,9 @@ class TweetCollection {
   }
 }
 
-const tweetsCollection = new TweetCollection(tweets);
-tweetsCollection.user = "Кудрявец Таня";
+// tweetsCollection.user = "Кудрявец Таня";
 // console.log(tweetsCollection.get("11"));
-console.log(tweetsCollection.addComment("22", "hello"));
+// console.log(tweetsCollection.addComment("22", "hello"));
 // console.log(tweetsCollection.remove("44"));
 // console.log(tweetsCollection.remove("12"));
 // console.log(tweetsCollection.edit("7", "tweet is edited"));

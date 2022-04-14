@@ -65,6 +65,8 @@ class TweetView {
 
     document.getElementById("commentForm").style.display = "block";
     document.getElementById("comments-id").style.display = "block";
+    document.getElementById("tweets-id").style.display = "none";
+    document.getElementById("tweet-id").style.display = "block";
     document.getElementById("refresh-button").style.display = "none";
   }
 }

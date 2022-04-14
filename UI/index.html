@@ -12,7 +12,9 @@
     <a href="">
       <button class="orange-button" name="go-out-button">Выйти</button>
     </a>
-    <label for="go-out-button" class="username-header">tanechka</label>
+    <label for="go-out-button" class="username-header" id="header-label"
+      >tanechka</label
+    >
   </header>
   <body>
     <section id="inputSection">
@@ -28,14 +30,47 @@
       </div>
 
       <div class="filter-div">
-        <form style="width: 100%" id="filter-form">
-          <div class="filter-box" id="filter-box"></div>
+        <form style="width: 100%">
+          <div class="filter-box" id="filter-box">
+            <div class="margin-top-3">
+              <label for="authors" class="margin-right-label">Автор</label>
+              <select
+                name="authors"
+                aria-placeholder="Автор"
+                id="authors"
+              ></select>
+            </div>
+            <div>
+              <label class="margin-right-label">По дате добавления</label>
+              <div style="display: inline-block">
+                <label for="since">С</label>
+                <input name="since" type="date" />
+              </div>
+              <div style="display: inline-block" class="margin-left-3">
+                <label for="till">До </label><input name="till" type="date" />
+              </div>
+            </div>
+            <div>
+              <label for="tags" class="margin-right-label">#Теги</label>
+              <select name="tags"></select>
+            </div>
+            <div class="margin-bottom-3">
+              <label for="text" class="margin-right-label">Текст</label>
+              <input placeholder="Введите текст" />
+              <button class="orange-button">Применить</button>
+            </div>
+          </div>
         </form>
+
+        <button id="filter">
+          <img src="pics/filter.svg" class="margin-auto icon" />
+        </button>
       </div>
       <hr id="line" />
     </section>
 
     <section id="tweets-id"></section>
+    <section id="tweet-id"></section>
 
     <section id="comments-id" class="comments scroll-style"></section>
     <button id="refresh-button">
@@ -66,4 +101,5 @@
   <script src="js/TweetView.js"></script>
   <script src="js/HeaderView.js"></script>
   <script src="js/GlobalFunctions.js"></script>
+  <script src="js/script.js"></script>
 </html>

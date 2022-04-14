@@ -6,7 +6,6 @@ class TweetCollectionView {
   display(user, tweetsCollection, size) {
     const fv = new FilterView("filter-box");
     fv.display(tweetsCollection);
-    document.getElementById("filter").style.visibility = "visible";
     const inputSection = document.createElement("section");
     const form = document.createElement("form");
     const inputUser = document.createElement("div");
@@ -80,13 +79,15 @@ class TweetCollectionView {
       tweet.append(tweetInf, text, twAnswers);
       tweetsList.append(tweet);
     }
+
     document.getElementById("commentForm").style.display = "none";
+    document.getElementById("tweet-id").style.display = "none";
     document.getElementById("comments-id").style.display = "none";
     document.getElementById("refresh-button").style.display = "block";
+
+    document.getElementById("inputSection").style.display = "block";
   }
 }
-const tweetsView = new TweetCollectionView("tweets-id");
-tweetsView.display("Кудрявец Таня", tweetsCollection.getPage());
 
 function formatDate(date) {
   let dd = date.getDate();

@@ -9,18 +9,14 @@ class HeaderView {
     if (user) {
       name.innerHTML = user;
       name.style.display = "block";
-      button.classList.toggle("orange-button");
-      button.classList.toggle("white-button");
+      button.classList.add("orange-button");
+      // button.classList.toggle("white-button");
       button.innerHTML = "Выйти";
     } else {
       name.style.display = "none";
-      button.classList.toggle("orange-button");
-      button.classList.toggle("white-button");
+      // button.classList.toggle("orange-button");
+      button.classList.add("white-button");
       button.innerHTML = "Войти";
     }
   }
 }
-
-const header = new HeaderView("html");
-header.display();
-header.display("Таня Кудрявец");

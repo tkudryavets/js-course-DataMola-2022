@@ -1,26 +1,36 @@
 class GlobalFunctions {
   static setCurrentUser(user) {
-    HeaderView.display(user);
+    header.display(user);
     tweetsCollection.user = user;
+    document.getElementById(
+      "inputSection"
+    ).children[0].children[0].children[0].children[0].innerHTML = `${user}`;
   }
 
   static addTweet(text) {
     tweetsCollection.add(text);
-    tweetsView.display(tweetsCollection.user, tweetsCollection, 10);
+    this.clear("tweets-id");
+    tweetsView.display(tweetsCollection.user, tweetsCollection.getPage());
   }
 
   static editTweet(id, text) {
     tweetsCollection.edit(id, text);
-    tweetsView.display(tweetsCollection.user, tweetsCollection, 10);
+    this.clear("tweets-id");
+
+    tweetsView.display(tweetsCollection.user, tweetsCollection.getPage());
   }
 
   static removeTweet(id) {
     tweetsCollection.remove(id);
-    tweetsView.display(tweetsCollection.user, tweetsCollection, 10);
+    this.clear("tweets-id");
+
+    tweetsView.display(tweetsCollection.user, tweetsCollection.getPage(0));
   }
 
   static getFeed(skip = 0, top = 10, filterConfig = {}) {
     GlobalFunctions.clear(tweetsView.id);
+    this.clear("tweets-id");
+
     tweetsView.display(
       tweetsCollection.user,
       tweetsCollection.getPage(skip, top, filterConfig)
@@ -28,13 +38,11 @@ class GlobalFunctions {
   }
 
   static showTweet(id) {
-    GlobalFunctions.clear(tweetsView.id);
-    GlobalFunctions.clear("filter-box");
-    GlobalFunctions.clear("filter");
-    document.getElementById("filter").style.visibility = "hidden";
     document.getElementById("inputSection").style.display = "none";
-    const tweetView = new TweetView("tweets-id", "comments-id");
+    document.getElementById("tweets-id").style.display = "none";
+    const tweetView = new TweetView("tweet-id", "comments-id");
     const tweet = tweetsCollection.get(id);
+    this.clear("tweet-id");
     tweetView.display(tweetsCollection.user, tweet);
   }
 
@@ -43,5 +51,3 @@ class GlobalFunctions {
     itemToDelete.innerHTML = "";
   }
 }
-
-// GlobalFunctions.showTweet("22");

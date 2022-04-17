@@ -29,7 +29,7 @@ class TweetView {
     text.classList.add("tweet-text");
     text.innerText = tweet_item.text;
     twAnswers.classList.add("tweet-answers");
-    a.href = "tweet.html";
+
     retweet.src = "pics/retweet.svg";
     retweet.classList.add("icon");
     a.append(retweet);

@@ -3,9 +3,8 @@ class TweetCollectionView {
     this.id = id;
   }
 
-  display(user, tweetsCollection, size) {
-    const fv = new FilterView("filter-box");
-    fv.display(tweetsCollection);
+  display(user, tweetsCollection, filter) {
+    filter.display(tweetsCollection);
     const inputSection = document.createElement("section");
     const form = document.createElement("form");
     const inputUser = document.createElement("div");
@@ -40,7 +39,7 @@ class TweetCollectionView {
     editButton.append(editPic);
     trashBasket.append(trashBasketPic);
 
-    for (let i = 0; i < Math.max(10, tweetsCollection.length); i++) {
+    for (let i = 0; i < Math.min(10, tweetsCollection.length); i++) {
       const elem = tweetsCollection[i];
       const tweet = document.createElement("section");
       const tweetInf = document.createElement("div");

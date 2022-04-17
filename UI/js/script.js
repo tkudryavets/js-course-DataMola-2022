@@ -120,16 +120,15 @@ const tweets = [
 ];
 
 tweets.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
-const tweetsCollection = new TweetCollection(tweets);
-const header = new HeaderView("html");
-const tweetsView = new TweetCollectionView("tweets-id", tweetsCollection);
-GlobalFunctions.setCurrentUser("Yanaa");
-GlobalFunctions.getFeed();
-GlobalFunctions.setCurrentUser("Кудрявец Татьяна");
-GlobalFunctions.getFeed(10, 10);
-GlobalFunctions.addTweet("i want to sleep");
-GlobalFunctions.setCurrentUser("Кураев Алексей");
-GlobalFunctions.editTweet("22", "i want to sleep");
-GlobalFunctions.removeTweet("22");
-GlobalFunctions.addTweet("i want to sleep");
-// GlobalFunctions.showTweet("22");
+
+const controller = new TweetsController(tweets);
+controller.setCurrentUser("Yanaa");
+controller.getFeed(0, 10, { author: "Кураев Алексей" });
+controller.getFeed(10, 10);
+controller.editTweet("22", "i want to sleep");
+controller.setCurrentUser("Кудрявец Татьяна");
+controller.addTweet("i want to sleep too");
+controller.setCurrentUser("Кураев Алексей");
+controller.removeTweet("22");
+controller.addTweet("i want to sleep");
+controller.showTweet("3");

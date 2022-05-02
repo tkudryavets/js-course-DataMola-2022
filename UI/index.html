@@ -8,22 +8,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <header>
-    <a href="main.html"><img src="pics/logo.svg" class="logo" /></a>
+    <a href="index.html"><img src="pics/logo.svg" class="logo" /></a>
     <a href="">
-      <button class="orange-button" name="go-out-button">Выйти</button>
+      <button name="go-out-button">Войти</button>
     </a>
-    <label for="go-out-button" class="username-header" id="header-label"
-      >tanechka</label
-    >
+    <label for="go-out-button" class="username-header" o></label>
   </header>
   <body>
     <section id="inputSection">
       <div class="message-input">
         <form>
-          <div class="tweet-inf username"><span>tanechka:</span></div>
+          <div class="tweet-inf username"><span></span></div>
           <div style="position: relative">
             <hr />
-            <textarea colums="60" rows="5">Введите текст </textarea>
+            <textarea colums="60" rows="5">Введите текст</textarea>
             <button type="submit" class="orange-button">Готово</button>
           </div>
         </form>
@@ -34,11 +32,9 @@
           <div class="filter-box" id="filter-box">
             <div class="margin-top-3">
               <label for="authors" class="margin-right-label">Автор</label>
-              <select
-                name="authors"
-                aria-placeholder="Автор"
-                id="authors"
-              ></select>
+              <select name="authors" aria-placeholder="Автор" id="authors">
+                <option selected>Все пользователи</option>
+              </select>
             </div>
             <div>
               <label class="margin-right-label">По дате добавления</label>
@@ -52,7 +48,7 @@
             </div>
             <div>
               <label for="tags" class="margin-right-label">#Теги</label>
-              <select name="tags"></select>
+              <select name="tags" multiple></select>
             </div>
             <div class="margin-bottom-3">
               <label for="text" class="margin-right-label">Текст</label>
@@ -61,12 +57,55 @@
             </div>
           </div>
         </form>
-
         <button id="filter">
           <img src="pics/filter.svg" class="margin-auto icon" />
         </button>
       </div>
       <hr id="line" />
+    </section>
+
+    <section class="authorization-block" id="authorization-block">
+      <h1>Вход</h1>
+      <form>
+        <label for="user" class="sign-in-error">Пользователь не найден</label>
+        <input name="user" placeholder="Логин" class="input-user-info" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          class="input-user-info"
+        />
+        <div class="buttons-authorization">
+          <button class="orange-button">Вход</button>
+          <button class="white-button">Регистрация</button>
+        </div>
+      </form>
+      <img src="pics/logo.svg" class="logo" />
+    </section>
+
+    <section class="register-block" id="register-block">
+      <h1>Регистрация</h1>
+      <form>
+        <input name="user" placeholder="Логин" class="input-user-info" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          class="input-user-info"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Повторите пароль"
+          class="input-user-info"
+        />
+        <label class="sign-in-error">Пароли не совпали</label>
+        <div class="buttons-authorization">
+          <button class="orange-button">Зарегестрироваться</button>
+          <button class="white-button">Войти</button>
+        </div>
+      </form>
+      <img src="pics/logo.svg" class="logo" />
     </section>
 
     <section id="tweets-id"></section>
@@ -79,8 +118,8 @@
     <form id="commentForm">
       <section class="comment-input">
         <textarea colums="60" rows="5" class="scroll-style">
-Введите текст
-        </textarea>
+Введите текст</textarea
+        >
         <button class="send"><img src="pics/send.svg" class="icon" /></button>
       </section>
     </form>
@@ -93,6 +132,7 @@
       <p>Последнее изменение: 03.03.2022</p>
     </div>
   </footer>
+  <script src="js/UserList.js"></script>
   <script src="js/Comment.js"></script>
   <script src="js/Tweet.js"></script>
   <script src="js/TweetCollection.js"></script>
@@ -101,5 +141,6 @@
   <script src="js/TweetView.js"></script>
   <script src="js/HeaderView.js"></script>
   <script src="js/GlobalFunctions.js"></script>
+  <script src="js/TweetsController.js"></script>
   <script src="js/script.js"></script>
 </html>

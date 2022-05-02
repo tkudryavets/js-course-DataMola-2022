@@ -62,37 +62,5 @@ class Comment {
     }
 
     return true;
-    // {
-    //   for (const key in com) {
-    //     if (Object.hasOwnProperty.call(com, key)) {
-    //       const element = com[key];
-    //       switch (key) {
-    //         case "id":
-    //           if (+element <= 0) {
-    //             return false;
-    //           }
-    //           break;
-
-    //         case "text":
-    //         case "author":
-    //           if (typeof element !== "string" || element.length == 0) {
-    //             return false;
-    //           }
-    //           if (element.length > 280) return false;
-    //           break;
-
-    //         case "createdAt":
-    //           if (!element.getFullYear()) {
-    //             return false;
-    //           }
-    //           break;
-
-    //         default:
-    //           return false;
-    //       }
-    //     } else return false;
-    //   }
-    // }
-    // return true;
   }
 }

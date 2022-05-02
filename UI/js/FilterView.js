@@ -3,7 +3,7 @@ class FilterView {
     this.id = id;
   }
 
-  display(tweetsCollection) {
+  display(tweetsCollection, choosenOptions) {
     const filterBox = document.getElementById(this.id);
 
     const authors = filterBox.children[0].children[1];
@@ -31,5 +31,14 @@ class FilterView {
       option.innerText = value;
       hashtags.append(option);
     });
+
+    if (choosenOptions) {
+      authors.selectedOptions[0].innerText = choosenOptions.author;
+      let i = 0;
+      choosenOptions?.hashtags?.forEach((element) => {
+        hashtags.selectedOptions[i].innerText = element;
+        i++;
+      });
+    }
   }
 }

@@ -27,7 +27,34 @@ class TweetView {
     const numberComments = document.createElement("p");
 
     text.classList.add("tweet-text");
-    text.innerText = tweet_item.text;
+    //text.innerText = tweet_item.text;
+
+    let textBeforeTag;
+    const regexp = /#[а-яА-ЯёЁA|\w]{0,30}/g;
+
+    let tagsArray = tweet_item.text.matchAll(regexp);
+    tagsArray = Array.from(tagsArray);
+    let firstInd = 0;
+    let lastInd = 0;
+    if (tagsArray === null || !tagsArray.length) {
+      text.innerText = tweet_item.text;
+    } else {
+      for (let i = 0; i < tagsArray.length; i++) {
+        lastInd = tweet_item.text.indexOf(tagsArray[i][0]) - 1;
+        textBeforeTag = tweet_item.text.substr(
+          firstInd,
+          lastInd - firstInd + 1
+        );
+        text.innerHTML += `${textBeforeTag}<span style="color: var(--orange-color)">${tagsArray[i][0]}</span>`;
+
+        firstInd = lastInd + tagsArray[i][0].length + 1;
+      }
+      text.innerHTML += tweet_item.text.substr(
+        firstInd,
+        tweet_item.text.length - lastInd
+      );
+    }
+
     twAnswers.classList.add("tweet-answers");
 
     retweet.src = "pics/retweet.svg";
@@ -50,7 +77,9 @@ class TweetView {
 
       commentUsername.innerText = `${tweet_item.comments[i].author}:`;
       commentUsername.classList.add("username");
-      commentDate.innerText = formatDate(tweet_item.comments[i].createdAt);
+      commentDate.innerText = formatDate(
+        new Date(tweet_item.comments[i].createdAt)
+      );
       commentInf.append(commentUsername, commentDate);
       commentDate.classList.add("margin-right-mixed");
 
@@ -66,6 +95,7 @@ class TweetView {
     document.getElementById("commentForm").style.display = "block";
     document.getElementById("comments-id").style.display = "block";
     document.getElementById("tweets-id").style.display = "none";
+    document.getElementById("authorization-block").style.display = "none";
     document.getElementById("tweet-id").style.display = "block";
     document.getElementById("refresh-button").style.display = "none";
   }

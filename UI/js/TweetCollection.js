@@ -16,6 +16,7 @@ class TweetCollection {
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
     this._user = "";
+    this.restore();
   }
 
   get user() {
@@ -67,31 +68,33 @@ class TweetCollection {
     for (const filter of keys) {
       switch (filter) {
         case "author":
-          paginationTweets = paginationTweets.filter(
-            // eslint-disable-next-line comma-dangle
-            (tweet) => tweet.author === filterConfig.author
-          );
+          if (filterConfig.author !== "")
+            paginationTweets = paginationTweets.filter(
+              (tweet) => tweet.author === filterConfig.author
+            );
           break;
 
         case "dateFrom":
-          paginationTweets = paginationTweets.filter(
-            (tweet) =>
-              tweet.createdAt.getTime() >= filterConfig.dateFrom.getTime()
-          );
+          if (filterConfig.dateFrom)
+            paginationTweets = paginationTweets.filter(
+              (tweet) =>
+                tweet.createdAt.getTime() >= filterConfig.dateFrom.getTime()
+            );
           break;
 
         case "dateTo":
-          paginationTweets = paginationTweets.filter(
-            (tweet) =>
-              tweet.createdAt.getTime() <= filterConfig.dateTo.getTime()
-          );
+          if (filterConfig.dateTo)
+            paginationTweets = paginationTweets.filter(
+              (tweet) =>
+                tweet.createdAt.getTime() <= filterConfig.dateTo.getTime()
+            );
           break;
 
         case "hashtags":
           paginationTweets = paginationTweets.filter((tweet) => {
             let result = true;
             for (let i = 0; i < filterConfig[filter].length; i++) {
-              if (tweet.text.indexOf(`#${filterConfig[filter][i]}`) === -1) {
+              if (tweet.text.indexOf(`${filterConfig[filter][i]}`) === -1) {
                 result = false;
               }
             }
@@ -107,7 +110,10 @@ class TweetCollection {
       }
     }
 
-    paginationTweets = paginationTweets.slice(skip, top + skip);
+    // paginationTweets = paginationTweets.slice(
+    //   skip,
+    //   Math.min(top + skip, paginationTweets.length)
+    // );
 
     return paginationTweets;
   }
@@ -134,7 +140,7 @@ class TweetCollection {
       return false;
     }
 
-    let tweet = this.tweetsArray.find((item) => item.id === id);
+    const tweet = this.tweetsArray.find((item) => item.id === id);
     if (
       text.length <= 280 &&
       text.length > 0 &&
@@ -151,9 +157,10 @@ class TweetCollection {
     if (this.user === "") {
       return false;
     }
-    let i = this.tweetsArray.findIndex((item) => item.id === id);
+    const i = this.tweetsArray.findIndex((item) => item.id === id);
     if (i !== -1 && this.tweetsArray[i].author === this.user) {
       this.tweetsArray.splice(i, 1);
+      this.delete();
       return true;
     }
 
@@ -168,20 +175,41 @@ class TweetCollection {
     const comment = new Comment(idCom.toString(), text, new Date(), this.user);
     if (Comment.validate(comment) && this.get(id)) {
       this.get(id).comments.push(comment);
+      this.save();
       return true;
     }
     return false;
   }
-}
 
-// tweetsCollection.user = "Кудрявец Таня";
-// console.log(tweetsCollection.get("11"));
-// console.log(tweetsCollection.addComment("22", "hello"));
-// console.log(tweetsCollection.remove("44"));
-// console.log(tweetsCollection.remove("12"));
-// console.log(tweetsCollection.edit("7", "tweet is edited"));
-// console.log(tweetsCollection.remove("7"));
-// console.log(tweetsCollection.getPage(5, 15));
-// tweetsCollection.clear();
-// console.log(tweetsCollection.add("new tweet is here!"));
-// console.log(tweetsCollection.tweetsArray);
+  save() {
+    localStorage.setItem("tweets", JSON.stringify(this.tweetsArray));
+    //this.tweetsArray = JSON.parse(localStorage.getItem("tweets"));
+  }
+
+  restore() {
+    this.tweetsArray = JSON.parse(localStorage.getItem("tweets"));
+    let tweetObj;
+    for (let i = 0; i < this.tweetsArray.length; i++) {
+      tweetObj = this.tweetsArray[i];
+      this.tweetsArray[i] = new Tweet(
+        tweetObj._id,
+        tweetObj.text,
+        tweetObj._createdAt,
+        tweetObj._author
+      );
+      for (let i = 0; i < tweetObj.comments.length; i++) {
+        this.tweetsArray[i].comments.push(
+          new Comment(
+            tweetObj.comments[i]._id,
+            tweetObj.comments[i].text,
+            tweetObj.comments[i]._createdAt,
+            tweetObj.comments[i]._author
+          )
+        );
+      }
+    }
+  }
+  delete() {
+    localStorage.setItem("tweets", JSON.stringify(this.tweetsArray));
+  }
+}

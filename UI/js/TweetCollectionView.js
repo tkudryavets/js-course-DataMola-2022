@@ -3,16 +3,17 @@ class TweetCollectionView {
     this.id = id;
   }
 
-  display(user, tweetsCollection, filter) {
-    filter.display(tweetsCollection);
+  display(user, tweetsCollection, filter, filterConfig = null) {
+    filter.display(tweetsCollection, filterConfig);
     const inputSection = document.createElement("section");
     const form = document.createElement("form");
     const inputUser = document.createElement("div");
     const relativeDiv = document.createElement("div");
     const messageInput = document.createElement("div");
+
     inputUser.classList.add("tweet-inf");
     inputUser.classList.add("username");
-    inputUser.innerHTML = "<span>" + user + ":</span>";
+    inputUser.innerHTML = `<span>${user}:</span>`;
     messageInput.classList.add("message-input");
     relativeDiv.style = "position: relative";
     relativeDiv.innerHTML =
@@ -24,67 +25,100 @@ class TweetCollectionView {
 
     const tweetsList = document.getElementById(this.id);
 
-    const editButton = document.createElement("div");
-    const trashBasket = document.createElement("div");
-
-    const editPic = document.createElement("img");
-    const trashBasketPic = document.createElement("img");
-    editPic.src = "pics/edit.svg";
-    trashBasketPic.src = "pics/trash-busket.svg";
-    editPic.classList.add("icon");
-    trashBasketPic.classList.add("icon");
-    editButton.classList.add("tweet-inf-button");
-    trashBasket.classList.add("tweet-inf-button", "margin-right-5");
-
-    editButton.append(editPic);
-    trashBasket.append(trashBasketPic);
-
-    for (let i = 0; i < Math.min(10, tweetsCollection.length); i++) {
-      const elem = tweetsCollection[i];
-      const tweet = document.createElement("section");
-      const tweetInf = document.createElement("div");
-      const username = document.createElement("span");
-      const date = document.createElement("span");
-      tweet.classList.add("tweet");
-      tweetInf.classList.add("tweet-inf");
-
-      username.innerText = `${elem.author}:`;
-      username.classList.add("username");
-      date.innerText = formatDate(elem.createdAt);
-      tweetInf.append(username, date);
-      if (elem.author === tweetsCollection.user) {
-        tweetInf.append(editButton, trashBasket);
-      } else {
-        date.classList.add("margin-right-mixed");
-      }
-
-      const text = document.createElement("div");
-      const twAnswers = document.createElement("div");
-      const a = document.createElement("a");
-      const retweet = document.createElement("img");
-      const numberComments = document.createElement("p");
-
-      text.classList.add("tweet-text");
-      text.innerText = elem.text;
-      twAnswers.classList.add("tweet-answers");
-      a.href = "tweet.html";
-      retweet.src = "pics/retweet.svg";
-      retweet.classList.add("icon");
-      a.append(retweet);
-      numberComments.innerText = elem.comments.length;
-
-      twAnswers.append(a, numberComments);
-
-      tweet.append(tweetInf, text, twAnswers);
-      tweetsList.append(tweet);
-    }
+    showTweets(0, 10, tweetsCollection, user, this.id, filterConfig);
 
     document.getElementById("commentForm").style.display = "none";
     document.getElementById("tweet-id").style.display = "none";
     document.getElementById("comments-id").style.display = "none";
     document.getElementById("refresh-button").style.display = "block";
-
+    document.getElementById("filter-box").style.display = "none";
+    document.getElementById("authorization-block").style.display = "none";
+    document.getElementById("register-block").style.display = "none";
     document.getElementById("inputSection").style.display = "block";
+  }
+}
+function showTweets(
+  iFirst = 0,
+  iLast,
+  tweetsCollection,
+  user,
+  id,
+  filterConfig
+) {
+  const tweetsList = document.getElementById(id);
+  const regexp = /#[а-яА-ЯёЁA|\w]{0,30}/g;
+
+  let i = iFirst;
+  iLast = Math.min(iLast, tweetsCollection.length);
+  for (; i < iLast; i++) {
+    const elem = tweetsCollection[i];
+    const tweet = document.createElement("section");
+    const tweetInf = document.createElement("div");
+    const username = document.createElement("span");
+    const date = document.createElement("span");
+    tweet.classList.add("tweet");
+    tweetInf.classList.add("tweet-inf");
+
+    username.innerText = `${elem.author}:`;
+    username.classList.add("username");
+    date.innerText = formatDate(elem.createdAt);
+    tweetInf.append(username, date);
+    if (elem.author === user) {
+      const editButton = document.createElement("div");
+      const trashBasket = document.createElement("div");
+
+      const editPic = document.createElement("img");
+      const trashBasketPic = document.createElement("img");
+      editPic.src = "pics/edit.svg";
+      trashBasketPic.src = "pics/trash-busket.svg";
+      editPic.classList.add("icon");
+      trashBasketPic.classList.add("icon");
+      editButton.classList.add("tweet-inf-button");
+      trashBasket.classList.add("tweet-inf-button", "margin-right-5");
+
+      editButton.append(editPic);
+      trashBasket.append(trashBasketPic);
+      tweetInf.append(editButton, trashBasket);
+    } else {
+      date.classList.add("margin-right-mixed");
+    }
+
+    const text = document.createElement("div");
+    const twAnswers = document.createElement("div");
+
+    const retweet = document.createElement("img");
+    const numberComments = document.createElement("p");
+
+    let textBeforeTag;
+    let tagsArray = elem.text.matchAll(regexp);
+    tagsArray = Array.from(tagsArray);
+    let firstInd = 0;
+    let lastInd = 0;
+    if (tagsArray === null || !tagsArray.length) {
+      text.innerText = elem.text;
+    } else {
+      for (let i = 0; i < tagsArray.length; i++) {
+        lastInd = elem.text.indexOf(tagsArray[i][0]) - 1;
+        textBeforeTag = elem.text.substr(firstInd, lastInd - firstInd + 1);
+        text.innerHTML += `${textBeforeTag}<span style="color: var(--orange-color)">${tagsArray[i][0]}</span>`;
+
+        firstInd = lastInd + tagsArray[i][0].length + 1;
+      }
+      text.innerHTML += elem.text.substr(firstInd, elem.text.length - lastInd);
+    }
+
+    text.classList.add("tweet-text");
+    twAnswers.classList.add("tweet-answers");
+
+    retweet.src = "pics/retweet.svg";
+    retweet.classList.add("icon");
+
+    numberComments.innerText = elem.comments.length;
+
+    twAnswers.append(retweet, numberComments);
+
+    tweet.append(tweetInf, text, twAnswers);
+    tweetsList.append(tweet);
   }
 }
 

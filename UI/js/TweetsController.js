@@ -20,7 +20,7 @@ class TweetsController {
     this.headerView.display("");
     this.userList = new UserList(this.modelTweetCollection);
     let user = JSON.parse(localStorage.getItem("currentUser"));
-    if (user.login) this.setCurrentUser(user.login);
+    if (user && user.login) this.setCurrentUser(user.login);
   }
 
   setCurrentUser(user) {

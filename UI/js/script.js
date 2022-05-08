@@ -292,12 +292,13 @@ document.querySelector("header").children[1].children[0].onclick = function (
   e
 ) {
   e.preventDefault();
-  if (controller.modelTweetCollection.user !== "") {
-    controller.setCurrentUser("");
-  } else {
+  if (e.target.innerText === "Войти") {
     document
       .querySelector("header")
       .children[1].children[0].addEventListener("click", handleSignIn, false);
+  } else {
+    controller.api.user = undefined;
+    controller.setCurrentUser();
   }
 };
 
@@ -314,26 +315,28 @@ function handleSignIn(e) {
 }
 
 // слушатель для входа
-
 document.forms[2][2].onclick = function (e) {
   e.preventDefault();
   let login;
   let password;
   login = document.forms[2][0].value;
   password = document.forms[2][1].value;
-  if (!controller.signUp(login, password)) {
-    document.getElementsByClassName("sign-in-error")[0].style.visibility =
-      "visible";
-  } else {
-    location.reload();
-  }
+  controller.api.login(login, password, controller);
+  // controller.setCurrentUser();
+  // if (!controller.signUp(login, password)) {
+  //   document.getElementsByClassName("sign-in-error")[0].style.visibility =
+  //     "visible";
+  // } else {
+  //   location.reload();
+  // }
 };
 //слушаетeль для регистрации
 document.forms[2][3].onclick = function (e) {
   e.preventDefault();
   document.getElementById("authorization-block").style.display = "none";
   document.getElementById("register-block").style.display = "block";
-
+  document.getElementsByClassName("sign-in-error")[1].style.visibility =
+    "hidden";
   document.forms[3][3].onclick = function (e) {
     e.preventDefault();
 
@@ -355,12 +358,13 @@ document.forms[2][3].onclick = function (e) {
         "Заполните все поля!";
     } else {
       if (password === password2) {
-        if (!controller.register(login, password)) {
-          document.getElementsByClassName("sign-in-error")[1].style.visibility =
-            "visible";
-          document.getElementsByClassName("sign-in-error")[1].innerText =
-            "Пользователь уже существует!";
-        }
+        controller.api.registration(login, password);
+        // if (!controller.register(login, password)) {
+        // document.getElementsByClassName("sign-in-error")[1].style.visibility =
+        //   "visible";
+        // document.getElementsByClassName("sign-in-error")[1].innerText =
+        //   "Пользователь уже существует!";
+        // }
       }
     }
   };

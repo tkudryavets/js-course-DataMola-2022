@@ -11,32 +11,32 @@ class TweetsController {
     this.modelTweetCollection.restore();
 
     this.shownTweets = 10;
-
+    this.api = new TweetFeedApiService("https://jslabapi.datamola.com/");
+    // let user = JSON.parse(localStorage.getItem("user"));
+    let user = localStorage.getItem("user");
+    if (!user) user = "";
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      user,
       this.modelTweetCollection.tweetsArray,
       this.filterView
     );
-    this.headerView.display("");
+    this.headerView.display(user);
     this.userList = new UserList(this.modelTweetCollection);
-    let user = JSON.parse(localStorage.getItem("currentUser"));
-    if (user.login) this.setCurrentUser(user.login);
+    this.setCurrentUser();
   }
 
-  setCurrentUser(user) {
-    if (user === "") {
-      this.userList.saveCurrentUser({});
-    }
-    this.headerView.display(user);
+  setCurrentUser() {
+    this.headerView.display(this.api.user);
     document.getElementById("tweets-id").style.display = "block";
 
-    this.modelTweetCollection.user = user;
     document.getElementById(
       "inputSection"
-    ).children[0].children[0].children[0].children[0].innerHTML = `${user}`;
+    ).children[0].children[0].children[0].children[0].innerHTML = `${
+      this.api.user ?? ""
+    }`;
     this.clear("tweets-id");
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      this.api.user,
       this.modelTweetCollection.getPage(),
       this.filterView
     );
@@ -47,7 +47,7 @@ class TweetsController {
     this.modelTweetCollection.save();
     this.clear("tweets-id");
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      this.api.user,
       this.modelTweetCollection.getPage(),
       this.filterView
     );
@@ -59,7 +59,7 @@ class TweetsController {
 
     this.clear("tweets-id");
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      this.api.user,
       this.modelTweetCollection.getPage(),
       this.filterView
     );
@@ -69,7 +69,7 @@ class TweetsController {
     this.modelTweetCollection.remove(id);
     this.clear("tweets-id");
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      this.api.user,
       this.modelTweetCollection.getPage(0),
       this.filterView
     );
@@ -80,7 +80,7 @@ class TweetsController {
     this.clear("tweets-id");
 
     this.tweetCollectionView.display(
-      this.modelTweetCollection.user,
+      this.api.user,
       this.modelTweetCollection.getPage(skip, top, filterConfig),
       this.filterView
     );
@@ -100,7 +100,7 @@ class TweetsController {
 
     this.clear("tweet-id");
     this.clear("comments-id");
-    this.tweetView.display(this.modelTweetCollection.user, tweet);
+    this.tweetView.display(this.api.user, tweet);
   }
 
   clear(id) {
@@ -108,24 +108,24 @@ class TweetsController {
     itemToDelete.innerHTML = "";
   }
 
-  register(login, password) {
-    if (this.userList.findUser({ login: login, password: password })) {
-      return false;
-    }
-    this.userList.addUser({ login: login, password: password });
-    this.userList.save();
-    this.setCurrentUser(login);
-    this.userList.saveCurrentUser({ login: login, password: password });
-    return true;
-  }
+  // register(login, password) {
+  //   if (this.userList.findUser({ login: login, password: password })) {
+  //     return false;
+  //   }
+  //   this.userList.addUser({ login: login, password: password });
+  //   this.userList.save();
+  //   this.setCurrentUser(login);
+  //   this.userList.saveCurrentUser({ login: login, password: password });
+  //   return true;
+  // }
 
-  signUp(login, password) {
-    if (this.userList.findUser({ login: login, password: password })) {
-      this.setCurrentUser(login);
-      this.userList.saveCurrentUser({ login: login, password: password });
-      return true;
-    }
-    // throw Error("User not found");
-    return false;
-  }
+  // signUp(login, password) {
+  //   if (this.userList.findUser({ login: login, password: password })) {
+  //     this.setCurrentUser(login);
+  //     this.userList.saveCurrentUser({ login: login, password: password });
+  //     return true;
+  //   }
+  //   // throw Error("User not found");
+  //   return false;
+  // }
 }

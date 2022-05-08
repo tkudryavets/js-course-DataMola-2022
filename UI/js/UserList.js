@@ -26,9 +26,9 @@ class UserList {
     localStorage.setItem("users", JSON.stringify(this.userList));
   }
 
-  saveCurrentUser(user) {
-    localStorage.setItem("currentUser", JSON.stringify(user));
-  }
+  // saveCurrentUser(user) {
+  //   localStorage.setItem("user", JSON.stringify(user));
+  // }
   restore() {
     this.userList = JSON.parse(localStorage.getItem("users"));
     // let userObj;

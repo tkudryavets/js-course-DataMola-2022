@@ -10,11 +10,11 @@ class HeaderView {
       name.innerHTML = user;
       name.style.display = "block";
       button.classList.add("orange-button");
-      button.classList.toggle("white-button");
+      button.classList.remove("white-button");
       button.innerHTML = "Выйти";
     } else {
       name.style.display = "none";
-      button.classList.toggle("orange-button");
+      button.classList.remove("orange-button");
       button.classList.add("white-button");
       button.innerHTML = "Войти";
     }

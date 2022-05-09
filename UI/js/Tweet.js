@@ -49,21 +49,21 @@ class Tweet {
       if (Object.hasOwnProperty.call(tw, key)) {
         const element = tw[key];
         switch (key) {
-          case "id":
-            if (+element <= 0) {
+          case "_id":
+            if (!element) {
               return false;
             }
             break;
 
           case "text":
-          case "author":
+          case "_author":
             if (typeof element !== "string" || element.length == 0) {
               return false;
             }
             if (element.length > 280) return false;
             break;
 
-          case "createdAt":
+          case "_createdAt":
             if (!element.getFullYear()) {
               return false;
             }

@@ -10,13 +10,14 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-syntax */
 class TweetCollection {
-  constructor(twsArray = []) {
-    this._tweetsArray = twsArray;
+  constructor() {
+    this._tweetsArray = [];
     this.tweetsArray.sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
     this._user = "";
-    this.restore();
+    localStorage.removeItem("tweets");
+    // this.restore();
   }
 
   get user() {
@@ -51,6 +52,7 @@ class TweetCollection {
     this.tweetsArray.sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
+    this.save();
     return wrongTweets;
   }
 
@@ -182,7 +184,7 @@ class TweetCollection {
   }
 
   save() {
-    localStorage.setItem("tweets", JSON.stringify(this.tweetsArray));
+    // localStorage.setItem("tweets", JSON.stringify(this.tweetsArray));
     //this.tweetsArray = JSON.parse(localStorage.getItem("tweets"));
   }
 
@@ -197,13 +199,13 @@ class TweetCollection {
         tweetObj._createdAt,
         tweetObj._author
       );
-      for (let i = 0; i < tweetObj.comments.length; i++) {
+      for (let j = 0; j < tweetObj.comments.length; j++) {
         this.tweetsArray[i].comments.push(
           new Comment(
-            tweetObj.comments[i]._id,
-            tweetObj.comments[i].text,
-            tweetObj.comments[i]._createdAt,
-            tweetObj.comments[i]._author
+            tweetObj.comments[j]._id,
+            tweetObj.comments[j].text,
+            tweetObj.comments[j]._createdAt,
+            tweetObj.comments[j]._author
           )
         );
       }

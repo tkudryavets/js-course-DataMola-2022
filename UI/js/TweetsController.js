@@ -1,6 +1,7 @@
 class TweetsController {
-  constructor(tweets = []) {
-    this.modelTweetCollection = new TweetCollection(tweets);
+  constructor() {
+    this.api = new TweetFeedApiService("https://jslabapi.datamola.com/");
+    this.modelTweetCollection = new TweetCollection();
     this.tweetCollectionView = new TweetCollectionView(
       "tweets-id",
       this.modelTweetCollection
@@ -10,23 +11,23 @@ class TweetsController {
     this.tweetView = new TweetView("tweet-id", "comments-id");
     this.modelTweetCollection.restore();
 
-    this.shownTweets = 10;
-    this.api = new TweetFeedApiService("https://jslabapi.datamola.com/");
-    //let user = JSON.parse(localStorage.getItem("user"));
-    let user = JSON.parse(localStorage.getItem("user"));
-    //if (!user || user === "undefined") user = undefined;
+    this.shownTweets = 0;
+    let user = localStorage.getItem("user");
+    this.setCurrentUser();
+
     this.tweetCollectionView.display(
       user,
       this.modelTweetCollection.tweetsArray,
       this.filterView
     );
+    this.modelTweetCollection.user = user;
     this.headerView.display(user);
     this.userList = new UserList(this.modelTweetCollection);
-    this.setCurrentUser();
   }
 
   setCurrentUser() {
-    //localStorage.setItem("user", this.api.user);
+    localStorage.setItem("user", this.api.user);
+    this.modelTweetCollection.user = this.api.user;
     this.headerView.display(this.api.user);
     document.getElementById("tweets-id").style.display = "block";
 
@@ -46,6 +47,7 @@ class TweetsController {
   addTweet(text) {
     this.modelTweetCollection.add(text);
     this.modelTweetCollection.save();
+    this.api.postTweet(text);
     this.clear("tweets-id");
     this.tweetCollectionView.display(
       this.api.user,
@@ -71,9 +73,10 @@ class TweetsController {
     this.clear("tweets-id");
     this.tweetCollectionView.display(
       this.api.user,
-      this.modelTweetCollection.getPage(0),
+      this.modelTweetCollection.getPage(),
       this.filterView
     );
+    location.reload();
   }
 
   getFeed(skip = 0, top = 10, filterConfig = {}) {

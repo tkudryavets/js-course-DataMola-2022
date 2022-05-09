@@ -56,6 +56,11 @@ function showTweets(
     const tweetInf = document.createElement("div");
     const username = document.createElement("span");
     const date = document.createElement("span");
+    const id = document.createElement("span");
+    id.innerText = elem.id;
+    id.style.display = "none";
+    tweetInf.append(id);
+
     tweet.classList.add("tweet");
     tweetInf.classList.add("tweet-inf");
 
@@ -64,8 +69,8 @@ function showTweets(
     date.innerText = formatDate(elem.createdAt);
     tweetInf.append(username, date);
     if (elem.author === user) {
-      const editButton = document.createElement("div");
-      const trashBasket = document.createElement("div");
+      const editButton = document.createElement("button");
+      const trashBasket = document.createElement("button");
 
       const editPic = document.createElement("img");
       const trashBasketPic = document.createElement("img");
@@ -73,8 +78,12 @@ function showTweets(
       trashBasketPic.src = "pics/trash-busket.svg";
       editPic.classList.add("icon");
       trashBasketPic.classList.add("icon");
-      editButton.classList.add("tweet-inf-button");
-      trashBasket.classList.add("tweet-inf-button", "margin-right-5");
+      editButton.classList.add("tweet-inf-button", "edit");
+      trashBasket.classList.add(
+        "tweet-inf-button",
+        "margin-right-5",
+        "trashBasket"
+      );
 
       editButton.append(editPic);
       trashBasket.append(trashBasketPic);

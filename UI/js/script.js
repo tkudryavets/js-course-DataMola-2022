@@ -1,11 +1,10 @@
-// localStorage.removeItem("tweets");
 const controller = new TweetsController();
 controller.api.getTweets({ from: 0, count: 1000 }, controller);
 if (controller.api.user === "") {
   document.forms[0][0].addEventListener("click", handleSignIn, false);
   document.forms[0][1].addEventListener("click", handleSignIn, false);
 }
-//setTimeout(() => location.reload(), 300000);
+setTimeout(() => location.reload(), 300000);
 // слушатель для прогрузки твитов
 document.getElementById("refresh-button").onclick = function () {
   const filterConfig = {};
@@ -159,13 +158,6 @@ document.forms[2][2].onclick = function (e) {
   login = document.forms[2][0].value;
   password = document.forms[2][1].value;
   controller.api.login(login, password, controller);
-  // controller.setCurrentUser();
-  // if (!controller.signUp(login, password)) {
-  //   document.getElementsByClassName("sign-in-error")[0].style.visibility =
-  //     "visible";
-  // } else {
-  //   location.reload();
-  // }
 };
 //слушаетeль для регистрации
 document.forms[2][3].onclick = function (e) {
@@ -196,17 +188,9 @@ document.forms[2][3].onclick = function (e) {
     } else {
       if (password === password2) {
         controller.api.registration(login, password);
-        // if (!controller.register(login, password)) {
-        // document.getElementsByClassName("sign-in-error")[1].style.visibility =
-        //   "visible";
-        // document.getElementsByClassName("sign-in-error")[1].innerText =
-        //   "Пользователь уже существует!";
-        // }
       }
     }
   };
-
-  // location.reload();
 };
 
 document.getElementById("tweets-id").onclick = function (event) {
@@ -245,51 +229,3 @@ document.getElementById("tweets-id").onclick = function (event) {
     controller.showTweet(id);
   }
 };
-// elem.children[2].onclick = function () {
-//     controller.showTweet(controller.modelTweetCollection.tweetsArray[i].id);
-//     //слушатель для комментариев
-// };
-// слушатели для удаления/редактирования твита
-// for (let i = 0; i < controller.modelTweetCollection.tweetsArray.length; i++) {
-//   const elem = document.getElementsByClassName("tweet")[i];
-
-//   if (elem && elem.children[0].children.length > 2) {
-//     elem.children[0].children[3].onclick = function () {
-//       controller.removeTweet(controller.modelTweetCollection.tweetsArray[i].id);
-//       controller.api.deleteTweet(
-//         controller.modelTweetCollection.tweetsArray[i].id
-//       );
-//       // location.reload();
-//     };
-
-//     elem.children[0].children[2].onclick = function () {
-//       document.forms[0][0].value =
-//         controller.modelTweetCollection.tweetsArray[i].text;
-//       idToEdit = controller.modelTweetCollection.tweetsArray[i].id;
-//       document.forms[0][1].removeEventListener("click", handleAdd);
-//       document.forms[0][1].addEventListener("click", handleEdit, false);
-//       // location.reload();
-//       // controller.removeTweet(controller.modelTweetCollection.tweetsArray[i].id);
-//     };
-//   } else if (!elem) {
-//     i = controller.modelTweetCollection.tweetsArray.length;
-//     break;
-//   }
-
-//   elem.children[2].onclick = function () {
-//     controller.showTweet(controller.modelTweetCollection.tweetsArray[i].id);
-//     //слушатель для комментариев
-//     document.forms[4][1].onclick = function (e) {
-//       e.preventDefault();
-//       const { value } = document.forms[4][0];
-//       if (value !== "Введите текст" && value !== "") {
-//         controller.modelTweetCollection.addComment(
-//           controller.modelTweetCollection.tweetsArray[i].id,
-//           value
-//         );
-
-//         controller.showTweet(controller.modelTweetCollection.tweetsArray[i].id);
-//       }
-//     };
-//   };
-// }

@@ -13,6 +13,7 @@ class TweetsController {
 
     this.shownTweets = 0;
     let user = localStorage.getItem("user");
+    if (user === "undefined") user = undefined;
     this.setCurrentUser();
 
     this.tweetCollectionView.display(

@@ -193,6 +193,8 @@ document.forms[2][3].onclick = function (e) {
   };
 };
 
+document.forms[3][4].addEventListener("click", handleSignIn, false);
+
 document.getElementById("tweets-id").onclick = function (event) {
   // event.preventDefault();
   if (
@@ -227,5 +229,39 @@ document.getElementById("tweets-id").onclick = function (event) {
       }
     };
     controller.showTweet(id);
+  }
+};
+
+document.querySelector("body").onmousedown = function (e) {
+  if (
+    e.target.tagName === "BUTTON" &&
+    e.target.classList.contains("orange-button") &&
+    e.target.getAttribute("name") !== "go-out-button"
+  ) {
+    e.target.style = "background-color: rgba(235,88,56,0.85)";
+  }
+  if (
+    e.target.tagName === "BUTTON" &&
+    e.target.classList.contains("white-button") &&
+    e.target.getAttribute("name") !== "go-out-button"
+  ) {
+    e.target.style = "background-color: rgba(235,88,56,0.07)";
+  }
+};
+
+document.querySelector("html").onmouseup = function (e) {
+  if (
+    e.target.tagName === "BUTTON" &&
+    e.target.classList.contains("orange-button") &&
+    e.target.getAttribute("name") !== "go-out-button"
+  ) {
+    e.target.style = "background-color: rgba(235,88,56,1)";
+  }
+  if (
+    e.target.tagName === "BUTTON" &&
+    e.target.classList.contains("white-button") &&
+    e.target.getAttribute("name") !== "go-out-button"
+  ) {
+    e.target.style = "background-color: white";
   }
 };

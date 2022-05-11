@@ -177,7 +177,7 @@ class TweetFeedApiService {
       .then((result) => {
         console.log(result);
         if (result.statusCode < 400) {
-          controller.addTweet(value);
+          controller.addTweet(text);
         }
         return result;
       })
@@ -268,7 +268,7 @@ class TweetFeedApiService {
       .then((result) => {
         console.log(result);
         if (result) {
-          controller.modelTweetCollection.addComment(tweetID, value);
+          controller.modelTweetCollection.addComment(tweetID, text);
           controller.showTweet(tweetID);
         }
         return result;

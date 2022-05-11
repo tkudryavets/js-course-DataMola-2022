@@ -17,7 +17,7 @@ class FilterView {
       let matchAll = element.text.matchAll(regexpHashtag);
       matchAll = Array.from(matchAll);
       matchAll.forEach((el) => {
-        hashtagsSet.add(el);
+        hashtagsSet.add(el[0]);
       });
     });
     authorSet.forEach((value, valueAgain, set) => {

@@ -6,6 +6,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable eqeqeq */
 /* eslint-disable linebreak-style */
+"use strict";
 class Tweet {
   constructor(id, text, createAt, author) {
     this._id = id;

@@ -1,3 +1,4 @@
+"use strict";
 class TweetFeedApiService {
   constructor(url) {
     this.url = url;
@@ -103,11 +104,9 @@ class TweetFeedApiService {
     }
     fetch(`${this.url}tweet?${params}`, requestOptions)
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((result) => {
-        console.log(result);
         let tweetObj;
         for (let i = 0; i < result.length; i++) {
           tweetObj = result[i];
@@ -171,15 +170,11 @@ class TweetFeedApiService {
     };
     fetch(`${this.url}tweet`, requestOptions)
       .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((result) => {
-        console.log(result);
-        if (result.statusCode < 400) {
+        if (response.status < 400) {
+          console.log("add");
           controller.addTweet(text);
         }
-        return result;
+        return response;
       })
       .catch((error) => console.log("error", error));
   }
@@ -230,13 +225,14 @@ class TweetFeedApiService {
     };
     fetch(`${this.url}tweet/${id}`, requestOptions)
       .then((response) => {
-        console.log(response);
-        return response.json();
+        //  console.log(response.json());
+        return response;
       })
       .then((result) => {
         console.log(result);
-        if (result.statusCode < 400) {
+        if (result.status < 400) {
           controller.editTweet(id, text);
+          document.forms[0][0].value = "Введите текст";
         }
         return result;
       })

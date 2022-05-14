@@ -1,3 +1,4 @@
+"use strict";
 class TweetCollectionView {
   constructor(id) {
     this.id = id;

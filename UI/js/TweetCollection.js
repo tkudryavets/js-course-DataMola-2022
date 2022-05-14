@@ -9,6 +9,7 @@
 /* eslint-disable default-case */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-syntax */
+"use strict";
 class TweetCollection {
   constructor() {
     this._tweetsArray = [];

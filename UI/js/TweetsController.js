@@ -1,3 +1,4 @@
+"use strict";
 class TweetsController {
   constructor() {
     this.api = new TweetFeedApiService("https://jslabapi.datamola.com/");
@@ -48,7 +49,6 @@ class TweetsController {
   addTweet(text) {
     this.modelTweetCollection.add(text);
     this.modelTweetCollection.save();
-    this.api.postTweet(text);
     this.clear("tweets-id");
     this.tweetCollectionView.display(
       this.api.user,

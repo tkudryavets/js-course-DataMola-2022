@@ -1,3 +1,4 @@
+"use strict";
 const controller = new TweetsController();
 controller.api.getTweets({ from: 0, count: 1000 }, controller);
 if (controller.api.user === "") {
@@ -95,11 +96,13 @@ document.forms[0][0].onblur = function () {
   if (document.forms[0][0].value === "")
     document.forms[0][0].value = "Введите текст";
 };
+
 // слушатель добавить твит
 document.forms[0][1].addEventListener("click", handleAdd, false);
 
-function handleAdd() {
-  document.forms[0][1].removeEventListener("click", handleEdit, false);
+function handleAdd(e) {
+  //document.forms[0][1].removeEventListener("click", handleEdit, false);
+  e.preventDefault();
   const { value } = document.forms[0][0];
   if (value !== "Введите текст" && value !== "") {
     controller.api.postTweet(value, controller);
@@ -107,7 +110,8 @@ function handleAdd() {
   }
 }
 let idToEdit;
-function handleEdit() {
+function handleEdit(e) {
+  e.preventDefault();
   const { value } = document.forms[0][0];
   if (value !== "") {
     controller.api.editTweet(idToEdit, value, controller);
